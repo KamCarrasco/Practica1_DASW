@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Sanrio Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: #fad2e0;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html" style="font-family: 'Pacifico', cursive; font-size: 1.8rem; display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+                <img src="https://www.remambo.jp/img/sanrio-logo.png" alt="Logo Sanrio" width="90" height="50" class="d-inline-block align-text-top" style="position: absolute; top: 10px; left: 10px;">
+                <span style="margin-left: 100px;">Sanrio Online Shop</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="position: absolute; top: 10px; right: 10px;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Barra de búsqueda -->
+                    <form class="d-flex w-100" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Type to Search" aria-label="Search" style="flex-grow: 1; min-width: 200px;">
+                        <button class="btn" type="submit" style="background-color: #fad2e0; color: #000;">Search</button>
+                    </form>        
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">My Orders</a>
+                    </li>
+                </ul>
+                <!-- Carrito -->
+                <a class="nav-link position-relative" href="shopping_cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill" 
+                        style="background-color: #fad2e0; color: #000;">0</span>
+                </a>
+                <!-- Botón Mi Cuenta -->
+                <a href="#" class="nav-link ms-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-user"></i> My Account
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+   <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Log In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <!-- Campo Correo -->
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" placeholder="Enter your Email" required>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                        </div>                        
+                        <!-- Campo Contraseña -->
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                        </div>
+                        <!-- Botón Login -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success w-100" style="background-color: #fad2e0; border: none;">Log In!</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Don't have an account? 
+                        <a href="#" style="color: #ff69b4;" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign Up!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!-- Modal de Sign In (Registro) -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signInForm">
+                        <!-- Nombre y Apellido en una fila -->
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" required pattern="^[A-Za-z\s]+$" title="Only letters and spaces are allowed">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" required pattern="^[A-Za-z\s]+$" title="Only letters and spaces are allowed">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Correo -->
+                        <div class="form-group mt-2">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        </div>
+
+                        <!-- Contraseña -->
+                        <div class="form-group mt-2">
+                            <input type="password" class="form-control" id="password" placeholder="Password" required 
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$"
+                                title="Must contain at least 6 characters, one uppercase letter, one lowercase letter, and one number">
+                        </div>
+
+                        <!-- Confirmar Contraseña -->
+                        <div class="form-group mt-2">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+
+                        <!-- Botón de Registro -->
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary" style="background-color: #fad2e0; border: none;">Sign Up!</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Already have an account? 
+                        <a href="#" style="color: #ff69b4;" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Log In!</a>
+                    </p>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrusel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://i.pinimg.com/736x/2a/b0/fa/2ab0fa2eca7f39733c1ea77e534c6584.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/736x/10/75/3d/10753d64c5d5a58fb560f4b9b24c316a.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/736x/3b/7d/a2/3b7da20b55a0b2d0fdbcb65cc599c633.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Sección de productos -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ-2pQzskDrIinLKplqpq5vBwYN0ncfxmjFDxwGbqRksvtJoa2BlwvVFY0N8G2BsDPnsFX2h8yh80Y7boLw6Hsy7zKR8BGC4kvKb0C5kv2dr-9ILLfmaNiRRuU&usqp=CAE"
+                        alt="Photo 1" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Kuromi Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Kuromi Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ-2pQzskDrIinLKplqpq5vBwYN0ncfxmjFDxwGbqRksvtJoa2BlwvVFY0N8G2BsDPnsFX2h8yh80Y7boLw6Hsy7zKR8BGC4kvKb0C5kv2dr-9ILLfmaNiRRuU&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTuavEZCDGUA9E0AwYjyOamaaCx_VTIyAOicd0xeJs4mcJg8B3H1L_wh4cklht-jG304U-MlZPnREUO7x51omxnnJeIOIwTpv6aSVWEYJnsF_d37lLUa_ijKY4V&usqp=CAE"
+                        alt="Photo 2" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">My Melody Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="My Melody Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTuavEZCDGUA9E0AwYjyOamaaCx_VTIyAOicd0xeJs4mcJg8B3H1L_wh4cklht-jG304U-MlZPnREUO7x51omxnnJeIOIwTpv6aSVWEYJnsF_d37lLUa_ijKY4V&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSKlUmTw8BDn1HVfC8FYVPHwy1tcp9veuTxB3KcqBkQfMnG0YYBlxdXPjRQSayVUUrzOcFBHbM7P06QpNLBXFQtWJISKE_LSW63ngHI64BYL7w_pSb1W_CLTg&usqp=CAE"
+                        alt="Photo 3" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Pompompurin Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Pompompurin Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSKlUmTw8BDn1HVfC8FYVPHwy1tcp9veuTxB3KcqBkQfMnG0YYBlxdXPjRQSayVUUrzOcFBHbM7P06QpNLBXFQtWJISKE_LSW63ngHI64BYL7w_pSb1W_CLTg&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://i.ebayimg.com/images/g/BC8AAOSwgctmcgFQ/s-l1600.webp"
+                        alt="Photo 4" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Little Twin Star Kiki Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Little Twin Star Kiki Keychain"
+                            data-price="50.00"
+                            data-image="https://i.ebayimg.com/images/g/BC8AAOSwgctmcgFQ/s-l1600.webp"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://i.ebayimg.com/images/g/ROMAAOSwEyFmcgCL/s-l1600.webp"
+                        alt="Photo 5" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Little Twin Star Lala Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Little Twin Star Lala Keychain"
+                            data-price="50.00"
+                            data-image="https://i.ebayimg.com/images/g/ROMAAOSwEyFmcgCL/s-l1600.webp"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRFnh3G2-HsOXG9nRUkAZF317niD_0XMB_MH89DqAxl281WtKqTTadZ3PYJVPWEIAykZEApNr74_0fqaSoRxiDhFyixGmott3YiTFOrcaE60TrTWgtI3_S2&usqp=CAE"
+                        alt="Photo 6" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Hangyodon Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Hangyodon Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRFnh3G2-HsOXG9nRUkAZF317niD_0XMB_MH89DqAxl281WtKqTTadZ3PYJVPWEIAykZEApNr74_0fqaSoRxiDhFyixGmott3YiTFOrcaE60TrTWgtI3_S2&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTUDkVL06OVWsQ0h2ulFmSw7M7AQ3SJYLL0orJ8DxDNjH1a5eGdbUkPehGZpxmKFPoWawHcTMJcN3Awrt5qZvt-9mCTmLQ9qt8JHwssgPduI6vx55iDQR0Miw&usqp=CAE"
+                        alt="Photo 7" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Hello Kitty Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Hello Kitty Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTUDkVL06OVWsQ0h2ulFmSw7M7AQ3SJYLL0orJ8DxDNjH1a5eGdbUkPehGZpxmKFPoWawHcTMJcN3Awrt5qZvt-9mCTmLQ9qt8JHwssgPduI6vx55iDQR0Miw&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQCmsJdHk5K5yt46Yw_pe1wCCQnS0cr8M6BzOVYhmGBNe6aLAz9Nz8QPgCxvX1z3I9ny4Xbi5cdPb_0M9ngACOHuAoxZWCDFQR8Zt-tcAfTJ1AXRne2XSLgIiom&usqp=CAE"
+                        alt="Photo 8" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Keroppi Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Keroppi Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQCmsJdHk5K5yt46Yw_pe1wCCQnS0cr8M6BzOVYhmGBNe6aLAz9Nz8QPgCxvX1z3I9ny4Xbi5cdPb_0M9ngACOHuAoxZWCDFQR8Zt-tcAfTJ1AXRne2XSLgIiom&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://www.sanrio.com/cdn/shop/files/zz-2404297658_CN_--1_800x.jpg?v=1713389192"
+                        alt="Photo 8" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Cinnamorroll Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Cinnamorroll Keychain"
+                            data-price="50.00"
+                            data-image="https://www.sanrio.com/cdn/shop/files/zz-2404297658_CN_--1_800x.jpg?v=1713389192"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR6iazDmCLu-VXdS4yN77oYAn-1WRCAYc2-k8s-kZ8EqPWNY-TAOsRR029Vju_MmlQDT8j_bNW7UppFjRSDExMZI0ds3Lrdvj7y_KMnT9iChcmlutI8WJFu9R1Y&usqp=CAE"
+                        alt="Photo 8" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Pochacco Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Pochacco Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR6iazDmCLu-VXdS4yN77oYAn-1WRCAYc2-k8s-kZ8EqPWNY-TAOsRR029Vju_MmlQDT8j_bNW7UppFjRSDExMZI0ds3Lrdvj7y_KMnT9iChcmlutI8WJFu9R1Y&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSaUEaQenmM1SuZEPV886BiLcyks3lCISMXYnoR7zHfvOp1-lNt85aYTfe8GGayUAIJ1q-0jtfwArYhFmwINcEVyweBMMqsBq_s_M41btVYfSsex3Hfx44X&usqp=CAE"
+                        alt="Photo 8" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Badtz-Maru Keychain</h4>
+                        <p class="card-text">50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Badtz-Maru Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSaUEaQenmM1SuZEPV886BiLcyks3lCISMXYnoR7zHfvOp1-lNt85aYTfe8GGayUAIJ1q-0jtfwArYhFmwINcEVyweBMMqsBq_s_M41btVYfSsex3Hfx44X&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 d-flex align-items-stretch">
+                <div class="card" style="width: 100%; margin: 10px;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTAKAG0G8mwpYf-SFdG9K1n-TlrbMAq1GyA70caD0DVlxRvK14cDhM5m6HWybeKyJoXsQrnZlzpbLarWSEhPslbRkw7YN2w9QxSzZ7V-O4d2bTfanV3Eg3OyQ&usqp=CAE"
+                        alt="Photo 8" style="max-height: 200px; min-height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-family: 'Playwrite IT Moderna', sans-serif;">Gudetama Keychain</h4>
+                        <p class="card-text">$50.00</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn w-100 text-uppercase text-light fw-bold"
+                            data-name="Gudetama Keychain"
+                            data-price="50.00"
+                            data-image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTAKAG0G8mwpYf-SFdG9K1n-TlrbMAq1GyA70caD0DVlxRvK14cDhM5m6HWybeKyJoXsQrnZlzpbLarWSEhPslbRkw7YN2w9QxSzZ7V-O4d2bTfanV3Eg3OyQ&usqp=CAE"
+                            onclick="addToCart(this); showCartMessage();"
+                            style="background-color: #fad2e0; border: none;"> 
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#" style="color: #ff69b4;">Anterior</a></li>
+            <li class="page-item"><a class="page-link" href="index.html" style="color: #ff69b4;">1</a></li>
+            <li class="page-item"><a class="page-link" href="pag2.html" style="color: #ff69b4;">2</a></li>
+            <li class="page-item"><a class="page-link" href="pag3.html" style="color: #ff69b4;">3</a></li>
+            <li class="page-item"><a class="page-link" href="#" style="color: #ff69b4;">Siguiente</a></li>
+        </ul>
+    </nav>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let cartCountElement = document.getElementById("cart-count");
+
+            if (totalItems > 0) {
+                cartCountElement.textContent = totalItems;
+                cartCountElement.style.display = "inline-block";
+            } else {
+                cartCountElement.style.display = "none"; // Oculta si está vacío
+            }
+        }
+
+        // Llamar la función al cargar la página
+        document.addEventListener("DOMContentLoaded", updateCartCount);
+
+        function addToCart(button) {
+            let name = button.getAttribute("data-name");
+            let price = button.getAttribute("data-price");
+            let image = button.getAttribute("data-image");
+
+            let cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+
+            let existingProduct = cart.find(item => item.name === name);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: parseFloat(price).toFixed(2),
+                    image: image,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem("shoppingCart", JSON.stringify(cart));
+            updateCartCount(); 
+        }
+
+        function showCartMessage() {
+            let message = document.getElementById("cart-message");
+            message.style.display = "block";
+
+            // Ocultar el mensaje después de 2 segundos
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 2000);
+        }
+
+    </script>    
+
+    <!-- Mensaje de confirmación de producto agregado -->
+    <div id="cart-message" 
+    class="text-center px-4 py-2 rounded fw-bold"
+    style="display: none; 
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        z-index: 1000; 
+        background-color: #ffb6c1; /* Rosa pastel más bonito */
+        color: #000; 
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        max-width: 300px; /* Máximo ancho del mensaje */
+        white-space: nowrap;">  
+        Product added to cart! 🛒
+    </div>
+    
+</body>
+</html>
